@@ -54,7 +54,7 @@ span.password {
 <body>
 	<h2>Login Form</h2>
 	<!-- Login form  -->
-		<form action="" method="GET">
+	<form action="" method="GET">
 
 		<div class="container">
 			<label for="username"><b>Username</b></label>
@@ -77,9 +77,9 @@ span.password {
 		/*
 		Read values from form
 		*/
-		var username = getQueryParameter(username);
-		var password = getQueryParameter(password);
-		if (username != null && password != null) {
+		var username = getQueryParameter('username');
+		var password = getQueryParameter('password');
+		if (username) {
 			showLoggedIn(username, function(error, success) {
 				showLoggedResults(username, success);
 			});
@@ -104,7 +104,7 @@ span.password {
 		var html = '';
 
 		html += '<p>Message:</p>';
-		html += '<pre>' + "Hello " + '</pre>';
+		html += '<pre>' + "Hello "+ username+ '</pre>';
 		html += '<H3>';
 		html += 'Succesfully Logged In'
 
@@ -114,7 +114,6 @@ span.password {
 	}
 
 	function getQueryParameter(username) {
-
 		var pairs = window.location.search.substring(1).split('&');
 		var pair;
 
