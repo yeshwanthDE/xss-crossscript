@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Form</title>
+</head>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text], input[type=password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+button {
+	background-color: #4CAF50;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+}
+
+button:hover {
+	opacity: 0.8;
+}
+
+
+.container {
+	padding: 16px;
+}
+
+span.password {
+	float: right;
+	padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+	span.psw {
+		display: block;
+		float: none;
+	}
+	.cancelbtn {
+		width: 100%;
+	}
+}
+</style>
+<body>
+	<h2>Login Form</h2>
+	<!-- Login form  -->
+		<form action="" method="GET">
+
+		<div class="container">
+			<label for="username"><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="username"  id="user" value="" required>
+
+			<label for="password"><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="password" id="pass" value="" required>
+
+			<button type="submit">Login</button>
+
+		</div>
+	</form>
+
+	<div id="success" ></div>
+
+	<!-- Script to read values -->
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+
+		/*
+		Read values from form
+		*/
+		var username = getQueryParameter(username);
+		var password = getQueryParameter(password);
+		if (username != null && password != null) {
+			showLoggedIn(username, function(error, success) {
+				showLoggedResults(username, success);
+			});
+		}
+	});
+
+	function showLoggedIn(username, callback) {
+
+		/*
+		Success message of logged user
+		*/
+		var success = [
+			'Logged In Succesfully'
+		];
+
+		callback(null, success);
+	}
+
+	function showLoggedResults(username, success) {
+
+		var result = document.querySelector('#success');
+		var html = '';
+
+		html += '<p>Message:</p>';
+		html += '<pre>' + "Hello " + '</pre>';
+		html += '<H3>';
+		html += 'Succesfully Logged In'
+
+		html += '</H3>';
+
+		result.innerHTML = html;
+	}
+
+	function getQueryParameter(username) {
+
+		var pairs = window.location.search.substring(1).split('&');
+		var pair;
+
+		for (var index = 0; index < pairs.length; index++) {
+
+			pair = pairs[index].split('=');
+
+			if (decodeURIComponent(pair[0]) === username) {
+				return decodeURIComponent(pair[1]);
+			}
+		}
+
+		return false;
+	}
+
+
+	</script>
+</body>
+</html>
